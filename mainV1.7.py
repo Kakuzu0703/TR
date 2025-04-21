@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QApplication, QMessageBox
 from license_validator import LicenseValidator
 
 # 延迟导入主程序模块
-from STARCCM_Simulation_automation_V7_0 import SimulationConfigWindow
+from STARCCM_Simulation_automation_V7_1 import SimulationConfigWindow
 
 
 def setup_logging():
