@@ -1,0 +1,15 @@
+{
+  "model_import_path": "C:\\Users\\owner\\Desktop\\star\\改名模型\\CV.STEP",
+  "starccm_path": "D:\\starCCM+\\16.06.008-R8\\STAR-CCM+16.06.008-R8\\star\\lib\\win64\\intel20.1vc14.2-r8\\lib\\starccmw.exe",
+  "starccmview_path": "D:\\starCCM+\\16.06.008-R8\\STAR-View+16.06.008\\bin\\starview+.exe",
+  "refprp64dll": "D:\\Program Files (x86)\\REFPROP\\REFPRP64.DLL",
+  "threads": "64",
+  "max_steps": "3000",
+  "temperature": "25",
+  "pressure": "0.3",
+  "mass_flow": "210/3600",
+  "workingfluid_index": 0,
+  "operator_name": "",
+  "last_params": {},
+  "task_queue": []
+}
