@@ -785,6 +785,178 @@ class SimulationConfigWindow(QWidget):
                 self.load_task_params(selected_index)
                 if task['status'] == "已完成":
                     self.display_simulation_results(task)
+                if task['status'] == "失败":
+                    self.pressure_drop_label.setText("压降值获取失败")
+                    self.pressure_drop_label.setStyleSheet("font-size: 24px; color: #FF0000; font-weight: bold;")
+                    self.mach_number_label.setText("马赫数获取失败")
+                    self.mach_number_label.setStyleSheet("font-size: 24px; color: #FF0000; font-weight: bold;")
+                    self.btn_mach_3d.setVisible(False)
+                    # 重置图片预览区
+                    self.pressure_label.clear()
+                    self.pressure_label.setText("压力云图获取失败")
+                    self.pressure_label.setStyleSheet("""
+                                    QLabel {
+                                        border: 2px solid #e74c3c;
+                                        border-radius: 5px;
+                                        background: #ffebee;
+                                        min-width: 400px;
+                                        min-height: 250px;
+                                        font-size: 36px;
+                                        color: #e74c3c;
+                                        font-weight: bold;
+                                    }
+                                """)
+
+                    self.streamline_label.clear()
+                    self.streamline_label.setText("流线图获取失败")
+                    self.streamline_label.setStyleSheet("""
+                                    QLabel {
+                                        border: 2px solid #e74c3c;
+                                        border-radius: 5px;
+                                        background: #ffebee;
+                                        min-width: 400px;
+                                        min-height: 250px;
+                                        font-size: 36px;
+                                        color: #e74c3c;
+                                        font-weight: bold;
+                                    }
+                                """)
+
+                    # 移除鼠标事件绑定
+                    self.pressure_label.mouseDoubleClickEvent = None
+                    self.streamline_label.mouseDoubleClickEvent = None
+
+                    # 禁用3D按钮
+                    self.btn_pressure_3d.setEnabled(False)
+                    self.btn_streamline_3d.setEnabled(False)
+
+                    # 立即刷新界面
+                    QApplication.processEvents()
+                if task['status'] == "等待计算":
+                    # 重置图片预览区
+                    self.pressure_label.clear()
+                    self.pressure_label.setText("压力云图预览区")
+                    self.pressure_label.setStyleSheet("""
+                                   QLabel {
+                                       border: 2px solid #3498DB;
+                                       border-radius: 5px;
+                                       background: #F8F9FA;
+                                       min-width: 400px;
+                                       min-height: 250px;
+                                       font-size: 36px;
+                                       font-weight: bold;
+                                   }
+                               """)
+
+                    self.streamline_label.clear()
+                    self.streamline_label.setText("流线图预览区")
+                    self.streamline_label.setStyleSheet("""
+                                   QLabel {
+                                       border: 2px solid #27AE60;
+                                       border-radius: 5px;
+                                       background: #F8F9FA;
+                                       min-width: 400px;
+                                       min-height: 250px;
+                                       font-size: 36px;
+                                       font-weight: bold;
+                                   }
+                               """)
+
+                    # 移除鼠标事件绑定
+                    self.pressure_label.mouseDoubleClickEvent = None
+                    self.streamline_label.mouseDoubleClickEvent = None
+
+                    self.btn_mach_3d.setVisible(False)
+                    # 禁用3D按钮
+                    self.btn_pressure_3d.setEnabled(False)
+                    self.btn_streamline_3d.setEnabled(False)
+
+                    self.pressure_drop_label.setText("等待计算...")
+                    self.pressure_drop_label.setStyleSheet("""
+                                    font-size: 24px; 
+                                    color: #FF0000; 
+                                    font-weight: bold;
+                                    padding: 5px 15px;
+                                    background: #FFF3CD;
+                                    border-radius: 5px;
+                                """)
+                    self.mach_number_label.setText("等待计算...")
+
+                    self.mach_number_label.setStyleSheet("""
+                                    font-size: 24px; 
+                                    color: #FF0000; 
+                                    font-weight: bold;
+                                    padding: 5px 15px;
+                                    background: #FFF3CD;
+                                    border-radius: 5px;
+                            """)
+
+                    # 立即刷新界面
+                    QApplication.processEvents()
+
+                if task['status'] == "计算中":
+                    # 重置压降值显示
+                    self.pressure_drop_label.setText(" 计算中...")
+                    self.pressure_drop_label.setStyleSheet("""
+                                    font-size: 24px; 
+                                    color: #FF0000; 
+                                    font-weight: bold;
+                                    padding: 5px 15px;
+                                    background: #FFF3CD;
+                                    border-radius: 5px;
+                                """)
+                    # 重置马赫数显示
+                    self.mach_number_label.setText(" 计算中...")
+                    self.mach_number_label.setStyleSheet("""
+                                    font-size: 24px; 
+                                    color: #FF0000; 
+                                    font-weight: bold;
+                                    padding: 5px 15px;
+                                    background: #FFF3CD;
+                                    border-radius: 5px;
+                            """)
+
+                    # 重置图片预览区
+                    self.pressure_label.clear()
+                    self.pressure_label.setText("压力云图预览区")
+                    self.pressure_label.setStyleSheet("""
+                                   QLabel {
+                                       border: 2px solid #3498DB;
+                                       border-radius: 5px;
+                                       background: #F8F9FA;
+                                       min-width: 400px;
+                                       min-height: 250px;
+                                       font-size: 36px;
+                                       font-weight: bold;
+                                   }
+                               """)
+
+                    self.streamline_label.clear()
+                    self.streamline_label.setText("流线图预览区")
+                    self.streamline_label.setStyleSheet("""
+                                   QLabel {
+                                       border: 2px solid #27AE60;
+                                       border-radius: 5px;
+                                       background: #F8F9FA;
+                                       min-width: 400px;
+                                       min-height: 250px;
+                                       font-size: 36px;
+                                       font-weight: bold;
+                                   }
+                               """)
+
+                    # 移除鼠标事件绑定
+                    self.pressure_label.mouseDoubleClickEvent = None
+                    self.streamline_label.mouseDoubleClickEvent = None
+
+                    self.btn_mach_3d.setVisible(False)
+                    # 禁用3D按钮
+                    self.btn_pressure_3d.setEnabled(False)
+                    self.btn_streamline_3d.setEnabled(False)
+
+                    # 立即刷新界面
+                    QApplication.processEvents()
+
 
     def display_simulation_results(self, task):
         self.btn_mach_3d.setVisible(False)
@@ -813,15 +985,74 @@ class SimulationConfigWindow(QWidget):
             res_pressure_img = os.path.join(res_report_folder, f"{res_name}_压力云图.png")
             if os.path.exists(res_pressure_img):
                 pixmap = QPixmap(res_pressure_img).scaled(400, 250, Qt.KeepAspectRatio)
+                self.pressure_label.setStyleSheet("""
+                                                   QLabel {
+                                                       border: 2px solid #3498DB;
+                                                       border-radius: 5px;
+                                                       background: #F8F9FA;
+                                                       min-width: 400px;
+                                                       min-height: 250px;
+                                                       font-size: 36px;
+                                                       font-weight: bold;
+                                                   }
+                                               """)
                 self.pressure_label.setPixmap(pixmap)
                 self.pressure_label.mouseDoubleClickEvent = lambda e: self.show_image(res_pressure_img)
+                self.btn_pressure_3d.setEnabled(True)
+            else:
+                self.pressure_label.clear()
+                self.pressure_label.setText("压力云图获取失败")
+                self.pressure_label.setStyleSheet("""
+                                                    QLabel {
+                                                        border: 2px solid #e74c3c;
+                                                        border-radius: 5px;
+                                                        background: #ffebee;
+                                                        min-width: 400px;
+                                                        min-height: 250px;
+                                                        font-size: 36px;
+                                                        color: #e74c3c;
+                                                        font-weight: bold;
+                                                    }
+                                                """)
+                self.pressure_label.mouseDoubleClickEvent = None
+                self.btn_pressure_3d.setEnabled(False)
+
 
             # 显示流线图
             res_streamline_img = os.path.join(res_report_folder, f"{res_name}_流线图.png")
             if os.path.exists(res_streamline_img):
                 pixmap = QPixmap(res_streamline_img).scaled(400, 250, Qt.KeepAspectRatio)
+                self.streamline_label.setStyleSheet("""
+                                                   QLabel {
+                                                       border: 2px solid #27AE60;
+                                                       border-radius: 5px;
+                                                       background: #F8F9FA;
+                                                       min-width: 400px;
+                                                       min-height: 250px;
+                                                       font-size: 36px;
+                                                       font-weight: bold;
+                                                   }
+                                               """)
                 self.streamline_label.setPixmap(pixmap)
                 self.streamline_label.mouseDoubleClickEvent = lambda e: self.show_image(res_streamline_img)
+                self.btn_streamline_3d.setEnabled(True)
+            else:
+                self.streamline_label.clear()
+                self.streamline_label.setText("流线图获取失败")
+                self.streamline_label.setStyleSheet("""
+                                                    QLabel {
+                                                        border: 2px solid #e74c3c;
+                                                        border-radius: 5px;
+                                                        background: #ffebee;
+                                                        min-width: 400px;
+                                                        min-height: 250px;
+                                                        font-size: 36px;
+                                                        color: #e74c3c;
+                                                        font-weight: bold;
+                                                    }
+                                                """)
+                self.streamline_label.mouseDoubleClickEvent = None
+                self.btn_streamline_3d.setEnabled(False)
 
             # 显示压降值
             res_csv_path = os.path.join(res_report_folder, f"{res_name}_average_pressure.csv")
@@ -863,8 +1094,8 @@ class SimulationConfigWindow(QWidget):
             self.res_sce_path3 = os.path.join(res_report_folder, f"{res_name}_Ma_0.3区域图.sce")
 
 
-            self.btn_pressure_3d.setEnabled(True)
-            self.btn_streamline_3d.setEnabled(True)
+            # self.btn_pressure_3d.setEnabled(True)
+            # self.btn_streamline_3d.setEnabled(True)
             QApplication.processEvents()  # 强制刷新UI
 
 
@@ -3359,6 +3590,44 @@ class SimulationConfigWindow(QWidget):
             else:
                 self.pressure_drop_label.setText("N/A 马赫数>0.5")
                 self.pressure_drop_label.setStyleSheet("font-size: 24px; color: #FF0000; font-weight: bold;")
+                # 重置图片预览区
+                self.pressure_label.clear()
+                self.pressure_label.setText("压力云图获取失败")
+                self.pressure_label.setStyleSheet("""
+                                                    QLabel {
+                                                        border: 2px solid #e74c3c;
+                                                        border-radius: 5px;
+                                                        background: #ffebee;
+                                                        min-width: 400px;
+                                                        min-height: 250px;
+                                                        font-size: 36px;
+                                                        color: #e74c3c;
+                                                        font-weight: bold;
+                                                    }
+                                                """)
+
+                self.streamline_label.clear()
+                self.streamline_label.setText("流线图获取失败")
+                self.streamline_label.setStyleSheet("""
+                                                    QLabel {
+                                                        border: 2px solid #e74c3c;
+                                                        border-radius: 5px;
+                                                        background: #ffebee;
+                                                        min-width: 400px;
+                                                        min-height: 250px;
+                                                        font-size: 36px;
+                                                        color: #e74c3c;
+                                                        font-weight: bold;
+                                                    }
+                                                """)
+
+                # 移除鼠标事件绑定
+                self.pressure_label.mouseDoubleClickEvent = None
+                self.streamline_label.mouseDoubleClickEvent = None
+
+                # 禁用3D按钮
+                self.btn_pressure_3d.setEnabled(False)
+                self.btn_streamline_3d.setEnabled(False)
                 QApplication.processEvents()
                 logging.info(f'导入数模路径: {model_import_path}')
                 logging.info(f'入口温度（°C）: {temperature}')
@@ -3439,6 +3708,45 @@ class SimulationConfigWindow(QWidget):
             self.pressure_drop_label.setStyleSheet("font-size: 24px; color: #FF0000; font-weight: bold;")
             self.mach_number_label.setText("马赫数获取失败")
             self.mach_number_label.setStyleSheet("font-size: 24px; color: #FF0000; font-weight: bold;")
+            self.btn_mach_3d.setVisible(False)
+            # 重置图片预览区
+            self.pressure_label.clear()
+            self.pressure_label.setText("压力云图获取失败")
+            self.pressure_label.setStyleSheet("""
+                                               QLabel {
+                                                   border: 2px solid #e74c3c;
+                                                   border-radius: 5px;
+                                                   background: #ffebee;
+                                                   min-width: 400px;
+                                                   min-height: 250px;
+                                                   font-size: 36px;
+                                                   color: #e74c3c;
+                                                   font-weight: bold;
+                                               }
+                                           """)
+
+            self.streamline_label.clear()
+            self.streamline_label.setText("流线图获取失败")
+            self.streamline_label.setStyleSheet("""
+                                               QLabel {
+                                                   border: 2px solid #e74c3c;
+                                                   border-radius: 5px;
+                                                   background: #ffebee;
+                                                   min-width: 400px;
+                                                   min-height: 250px;
+                                                   font-size: 36px;
+                                                   color: #e74c3c;
+                                                   font-weight: bold;
+                                               }
+                                           """)
+
+            # 移除鼠标事件绑定
+            self.pressure_label.mouseDoubleClickEvent = None
+            self.streamline_label.mouseDoubleClickEvent = None
+
+            # 禁用3D按钮
+            self.btn_pressure_3d.setEnabled(False)
+            self.btn_streamline_3d.setEnabled(False)
             # 仿真失败后恢复按钮状态
             self.run_button.setText('开始运行')
             self.run_button.setStyleSheet("font-size: 48px; font-weight: bold; background-color: #90EE90;")  # 恢复绿色背景
