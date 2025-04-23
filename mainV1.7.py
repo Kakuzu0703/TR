@@ -91,3 +91,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+#打包命令  pyinstaller --windowed --console --add-data "logo_SANHUA.png;." --add-data "50EG_Report.pptx;." --add-data "Refrigerant_Report.pptx;." --add-data "SanHua_Logo.ico;." --icon=SanHua_Logo.ico mainV1.7.py
