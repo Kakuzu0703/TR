@@ -3469,7 +3469,19 @@ class SimulationConfigWindow(QWidget):
                 replace_image(slide_4, "",streamline_img,0)#由于第一张被替换，第二张变成了第一张，所以再次替换
                 replace_image(slide_5, "",Ma_img)
                 if Ma==0:
-                    del slide_5
+                    # del slide_5
+
+                    # 获取要删除的幻灯片
+                    slide_to_remove = prs.slides[4]
+
+                    # 获取所有幻灯片的 XML 元素列表
+                    slides_list = prs.slides._sldIdLst
+
+                    # 找到对应的幻灯片 XML 元素并删除
+                    for elem in slides_list:
+                        if elem.id == slide_to_remove.slide_id:
+                            slides_list.remove(elem)
+                            break
             else:
                 ppt_template = '50EG_Report.pptx'
                 prs = Presentation(str(resource_path(ppt_template)))
