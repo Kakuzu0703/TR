@@ -2212,6 +2212,11 @@ class SimulationConfigWindow(QWidget):
         else:
             logging.info(f"文件 {script_path} 不存在，将被创建。")
 
+        if stop_criteria_max_steps>500:
+            x_axis=500
+        else:
+            x_axis=0
+
         # 写入无后缀名的文件，内容为给定的Java代码
         file_content = rf"""// Simcenter STAR-CCM+ macro: StarCCM_script.java
         // Written by Simcenter STAR-CCM+ 16.06.008
@@ -2738,6 +2743,17 @@ class SimulationConfigWindow(QWidget):
             monitorPlot_0.export(resolvePath("D:\\STARCCM Simulation automation\\{datenow}\\{unicode_operator_name}\\{name}_{self.index}\\Report\\{name}_pressure.csv"), ",");
             
             monitorPlot_0.export(resolvePath("D:\\{public_unicode}\\{datenow}\\{unicode_operator_name}\\{name}_{self.index}\\Report\\{name}_pressure.csv"), ",");
+            
+            Cartesian2DAxis cartesian2DAxis_0 = 
+              ((Cartesian2DAxis) cartesian2DAxisManager_0.getAxis("Bottom Axis"));
+        
+            cartesian2DAxis_0.setMinimum({x_axis});
+        
+            cartesian2DAxisManager_0.setAxesBounds(new Vector(Arrays.<AxisManager.AxisBounds>asList(new AxisManager.AxisBounds("Bottom Axis", {x_axis}, true, {stop_criteria_max_steps}, false))));
+        
+            monitorPlot_0.encode(resolvePath("D:\\STARCCM Simulation automation\\{datenow}\\{unicode_operator_name}\\{name}_{self.index}\\Report\\{name}_\u538B\u964D\u6536\u655B\u66F2\u7EBF\u56FE.png"), "png", 3200, 1800, true, false);
+            
+            monitorPlot_0.encode(resolvePath("D:\\{public_unicode}\\{datenow}\\{unicode_operator_name}\\{name}_{self.index}\\Report\\{name}_\u538B\u964D\u6536\u655B\u66F2\u7EBF\u56FE.png"), "png", 3200, 1800, true, false);            
         
             MonitorPlot monitorPlot_1 =
               ((MonitorPlot) simulation_0.getPlotManager().getPlot("A_dp Monitor \u7ED8\u56FE"));
