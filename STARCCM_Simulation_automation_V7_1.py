@@ -2212,7 +2212,7 @@ class SimulationConfigWindow(QWidget):
         else:
             logging.info(f"文件 {script_path} 不存在，将被创建。")
 
-        if stop_criteria_max_steps>500:
+        if int(stop_criteria_max_steps)>500:
             x_axis=500
         else:
             x_axis=0
