@@ -1573,7 +1573,7 @@ class SimulationConfigWindow(QWidget):
         main_layout.addWidget(visualization_widget, stretch=1)
 
         self.setLayout(main_layout)
-        self.setWindowTitle('STAR-CCM+ 阀类压降仿真自动化V1.7')
+        self.setWindowTitle('STAR-CCM+ 阀类压降仿真自动化V1.72')
         self.show()
 
     def show_image(self, image_path):
